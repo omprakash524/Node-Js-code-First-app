@@ -8,6 +8,9 @@ const server = http.createServer((req,res)=>{
         res.end("Hello from the about sides");
     }else if(req.url == "/contact"){
         res.end("Hello from the contact sides");
+    }else{
+        res.writeHead(404, {"content-type":"text/html"});
+        res.end("<h1>404 error page</h1>");
     }
 });
 
