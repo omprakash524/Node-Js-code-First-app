@@ -23,7 +23,9 @@ console.log(operator.name);
 // console.log(city);
 
 // Here we are using object destructuring
-const {add,sub,name} = require('./operator');
-console.log(add(54,6));
-console.log(sub(54,6));
+const {mul,add,sub,name} = require('./operator');
+console.log(`Multiplication : ${mul(54,6)}`);
+console.log(`Subtraction : ${sub(54,6)}`);
+console.log(`Addition : ${add(54,6)}`);
+console.log(`My name : ${name}`);
 console.log(name);
