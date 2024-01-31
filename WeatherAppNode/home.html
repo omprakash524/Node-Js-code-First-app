@@ -1,0 +1,84 @@
+<!-- Weather App -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Weather App</title>
+    
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css"/>
+    <script src="http://code.jquery.com/jquery-2.1.4.min.js"></script>  
+    <style type="text/css"> 
+        .jumbotron {
+            color: white;   
+            padding: 20px;
+            font-family: "Arial", sans-serif;  
+        }
+        
+        #weather {
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <div class="container jumbotron">
+        <h1 id="cityName"></h1>
+        <p><i class="fa fa-map-marker"></i>&nbsp;&nbsp;City: <span id="city"></span></p>
+        <p><i class="fa fa-calendar"></i>&nbsp;&nbsp;Date: <span id="date"></span></p>
+        <div id="weather"></div>
+    </div>
+    
+    <script>
+       var apiKey = '795dbbaadbcfcdaf'; // Replace with your own API key from OpenWeathermap.org
+       function getWeather(city) {
+           $.ajax({
+               url: `http://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}`,
+               dataType: 'json',
+               success: function (result) {
+                   $('#cityName').html('Weather in ' + result.name);
+                   $('#city').html(result.name);
+                   let date = new Date((result.dt + result.timezone) * 1000);
+                   $('#date').html(date.toLocaleString());
+                   
+                   let tempK = result.main.temp;
+                   let weatherIcon = $('<img/>').attr('src', 'http://openweathermap.org/img/w/' + result.weather[0].icon + '.png');
+                   let weatherDesc = $('<span/>').html(result.weather[0].description).addClass('capitalize');
+                   
+                   let weather = $('<p/>')
+                       .append($('<strong/>').html('Temperature: '))
+                       .append(Math.round(tempK - 273.15) + '°C / ' + (tempK - 459.67) + '°F ')
+                       .append(weatherIcon.add(weatherDesc));
+                   
+                   $('#weather').empty().append(weather);
+               },
+               error: function () {
+                   alert("Error fetching weather data");
+               }
+           });
+       };
+       
+       $(document).ready(function() {
+           $("#search").on("click", function() {
+               let city = $("#location").val();
+               
+               if (city === "") {
+                   alert("Please enter a location!");
+               } else {
+                   getWeather(city);
+               }
+           })
+           
+           $("#share").on("click", function(){
+               let textToShare = "Check out the weather for " + $('#city').text() + " on " + $("#date").text() + ". It's currently " +
+                                $("#weather strong").last().text().split(":")[1].trim();
+               navigator.clipboard.writeText(textToShare)
+                   .then(() => {
+                       alert("Copied to clipboard!");
+                   })
+                   .catch((err) => {
+                       console.log("Something went wrong!");
+                   });
+           });
+       });
+       </script>
+</body>
+</html>

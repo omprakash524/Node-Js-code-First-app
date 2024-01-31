@@ -1,7 +1,10 @@
 {
 	"id": "0001",
+	"name":"Om Prakash",
+	"age":"22",
+	"gender":"Male",
+	"schema":  "http://www.google.com", 
 	"type": "donut",
-	"name": "Cake",
 	"ppu": 0.55,
 	"batters":
 		{

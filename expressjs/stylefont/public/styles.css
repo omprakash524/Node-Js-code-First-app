@@ -1,0 +1,45 @@
+/* styles.css */
+body {
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+
+.menu{
+    display: flex; 
+    justify-content: space-around; 
+    list-style: none; 
+    padding: 10px; 
+    background-color: #333;
+}
+li a {
+    color:aliceblue;  
+    text-decoration: none;  
+    font-size: 24px;  
+}
+
+/* Responsive part ----------------------------*/
+@media screen and (max-width: 600px) {
+	.menu, li {
+        flex-direction: column;  
+    }
+    
+    .menu {
+        padding: 8px;  
+    }
+    
+    li a {
+        font-size: 18px;    
+    }   
+}
+
+footer{
+    margin: auto; 
+    width: 100%;  
+    border-top: 1px solid lightgrey;  
+    line-height: 3em;  
+    text-align: center;   
+    font-size: 14px;    
+    color: grey;
+    /*make footer down in the middle*/    
+    position: absolute;
+    bottom: 0;
+}
