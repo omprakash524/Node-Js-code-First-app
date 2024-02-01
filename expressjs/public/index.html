@@ -3,22 +3,65 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!-- Link your custom stylesheet where you can set the font-family -->
     <link rel="stylesheet" href="/styles.css">
     <title>Express App</title>
 </head>
-<body>
-    <h2>Welcome to Home Page</h2>
-    <header>
-        <nav>
-            <ul class="menu">
-                <li><a href="/homepage.html">HomePage</a></li>
-                <li><a href="/aboutus.html">About Us</a></li>
-                <li><a href="/contactus.html">Contact Us</a></li>
-            </ul>
-        </nav> 
-    </header>   
-  
+
+<header>
+    <nav class="hover-nav">
+        <ul class="menu">
+            <li><a href="/homepage.html">HomePage</a></li>
+            <li><a href="/aboutus.html">About Us</a></li>
+            <li><a href="/contactus.html">Contact Us</a></li>
+            <li><a href="/pages.html">Pages</a></li>
+        </ul>
+    </nav> 
+</header>   
+<h2>Welcome to Home Page</h2>
+    <!-- Add some content in body -->
+    <main>
+        <marquee behavior="scroll" direction="right" scrollamount="10"></marquee>
+        <h1 class="banner-header">Handmade, With an Extra Pinch of <span>Love</span> </h1>
+        <img src="./images/banner-img.png" alt="Pizza image">
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quasi quod natus voluptates repudiandae eaque laboriosam
+            pizza, dish of Italian origin consisting of a flattened disk of bread dough topped with some combination of olive oil,
+            oregano, tomato, olives, mozzarella or other cheese, and many other ingredients, baked quickly—usually, in a commercial 
+            setting, using a wood-fired oven heated to a very high temperature—and served hot </p>
+    </main>
+    
+    <form action="/orderfood" method="post">
+        <label for="quantity">Quantity:</label>
+        <input type="number" id="quantity" name="quantity"><br><br>
+        <label for="type">Type of Food:</label><br>
+        <select id="type" name="type">
+            <option value="pizza">Pizza</option>
+            <option value="sandwich">Sandwich</option>
+            <option value="salad">Salad</option>
+        </select><br><br>
+        <input type="submit" value="Order Now!">
+    </form>
+    <!-- Make a list of food items with images -->
+    <section>
+        <h3>Our Menu Items:</h3>
+        <ul class="items">
+            <li>
+                <img src="/images/pizza.jpg" alt="Pizza Image"/>
+                <h4>Pizza - $15</h4>
+            </li>
+            <li>
+                <img src="/images/sandwich.jpg" alt="Sandwich Image"/>
+                <h4>Sandwich - $8</h4>
+            </li>
+            <li>
+                <img src="https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.indianhealthyrecipes.com%2Fpizza-recipe-make-pizza%2F&psig=AOvVaw2L_OFzxbWAcdh4PNwBn7AJ&ust=1706764989272000&source=images&cd=vfe&opi=89978449&ved=0CBMQjRxqFwoTCPiSh5nxhoQDFQAAAAAdAAAAABAE" alt="NotFound Image"/>
+                <h4>NotFound - $0</h4>
+            </li>
+        </ul>
+    </section>
+
+   
+
+    
     <footer>
         &copy; Copyright Reserved by Our Company Name
     </footer>
