@@ -29,6 +29,9 @@ img{
     height: auto;
     /* align-items: center; */
 }
+.ptxt{
+    margin: 80px;
+}
 
 /* Responsive part ----------------------------*/
 @media screen and (max-width: 600px) {
@@ -36,11 +39,11 @@ img{
         flex-direction: column;  
     }
     
-    .menu {
+    .menu, div {
         padding: 8px;  
     }
     
-    li a {
+    div,li a {
         font-size: 18px;    
     }   
 }
