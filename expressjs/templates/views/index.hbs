@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HBS</title>
+</head>
+<body>
+    {{>header}}
+    <h2>I am dynamic hbs</h2>
+
+    <?php 
+        $name = $_POST['name'];
+        echo "Your Name is: ". $name;
+     ?>
+    <form action="<?php echo $_SERVER["PHP_SELF"];?>" method
+        onsubmit="return validateForm()">
+            Enter your name: <input type="text" id="name" name="name"><br><br>
+            <input type="submit" value="Submit">
+    </form>  
+    <script>
+        function validateForm(){
+            var x = document.getElementById("name").value;
+            if(x == ""){
+                alert("Name must be filled out");
+                return false;
+            }else{
+                return true;
+            }
+        }
+    </script>
+
+    {{>footer}}
+</body>
+</html>
+    
