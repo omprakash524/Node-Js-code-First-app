@@ -69,58 +69,48 @@ const createDocument = async ()=>{
     }
 }
 // calling function
-createDocument();
-
-// this save() method return promise  so we can use then and catch method for handling the response of that promise
-// reactPlaylist.save().then((doc) => {
-//     console.log(`playlist created ${doc}`);
-// }).catch((err) => {
-//     console.log(err);
-// });
+// createDocument(); // we are commenting this so when ever we run to read data we dont want to make it create again and again
 
 
+// Read or Querying the documents using mongoose in express app
+const getPlaylist = async () => {
+     try{
+          let playlists = await Playlist.find() ; // find all data from collection
+          
+          // select specific fields of a documnet
+          /*let selectedFields=await Playlist.find( {}, 'name ctype' );
+          console.log("selected Fields : ",selectedFields)*/
+
+          // skip and limit method for pagination
+          /*let paginateData=await Playlist.find().skip(1).limit(2);
+          console.log('Pagination Data',paginateData)*/
+
+         // sorting the data
+         /*let sortByName=await Playlist.find().sort('name');
+         console.log('Sort By Name ',sortByName)
+
+         let sortByVideos=await Playcount.find().sort('-videos')
+         console.log('Sort By Videos',sortByVideos)*/
+
+         // search by field value
+         /*let searchFieldValue=await Playlist.find({ctype:'Front End'})
+         console.log('Search By Value',searchFieldValue)*/
+
+         // Regular Expression to perform pattern matching on string values
+         let regExpSearch=await Playlist.find({ name:/^Express/i })     
+         console.log('Reg Exp Search',regExpSearch)  
+
+         process.exit(); 
+     } catch (error) {
+         console.log(`Error Occured ${error}`);
+     }
+ }
+
+ const getDocument = async()=>{
+    const result = await Playlist.find();
+    console.log(result);
+ }
 
 
-
-
-
-
-
-// const userSchema= new mongoose.Schema({
-//     name:{type : String , required : true}, 
-//     email:{type :String,required :true },   
-//     email:{type :String,required:true },
-//     password:{type:String,required:true}
-// })
-
-// let User = mongoose.model('User',userSchema)   // creating model from schema
-
-// let user = new User({                         // creating object of the model
-//     name:"John Doe",
-//     email:"john@gmail.com",
-//     password:"password"
-// })
-
-// user.save().then((doc)=>{
-//     console.log("Data saved successfully!");
-//     console.log(doc);
-// }).catch((err)=>console.error(err));
-
-// /*
-// find data in database by id
-// */
-// User.findById(user.id).then((result)=>{
-//     console.log(`Got result ${result}`);
-// }).catch((err)=>console.error(err))
-
-// /*
-// update data in database
-// */
-// // User.findOneAndUpdate({name:'John Doe'}, {name:'Jane Doe'}).then((result)=>{
-// //     console.log(`Updated result ${result}`);
-// // }).catch((err)=>console.error(err))
-
-// // find & update multiple documents
-// // User.find({name:'Jane Doe'}).limit(1).sort({date:-1}).exec((err,docs)=>{
-// //     if(!err){
-// //         let doc = docs[0];
+// getPlaylist();
+getDocument();
