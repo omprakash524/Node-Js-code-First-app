@@ -2,21 +2,21 @@ const express = require('express');
 const app = express();
 const path = require('path');
 const hbs = require("hbs");
-const port = process.env.PORT || 3000;
+const port = process.env.PORT || 8000;
 
 
 // public static path
 const static_path = path.join(__dirname,"../public");
-const template_path = path.join(__dirname,"../templates");
-const partials_path = path.join(__dirname,"../views");
+// const template_path = path.join(__dirname,"../templates");
+// const partials_path = path.join(__dirname,"../views");
 
 
 
-app.set('views',path.join(__dirname,'views'));
+// app.set("views", path.join(__dirname, "views"));
 // set handlebar template engine
-app.set('view engine', 'hbs');
+// app.set("view engine", "hbs");
 // app.set('views', template_path);
-hbs.registerPartials(partials_path);
+// hbs.registerPartials(partials_path);
 
 app.use(express.static(static_path));
 // app.use(express.static(partials_path));
