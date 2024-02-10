@@ -106,9 +106,14 @@ const getPlaylist = async () => {
      }
  }
 
+//  comparison query operators using mongoose and node js
  const getDocument = async()=>{
     try{
-        const result = await Playlist.find({ctype:"Front End"}).select({name:1}).limit(1);
+        const result = await Playlist
+        // .find({videos: {$gt:100}}) // greater than 100
+        .find({ctype: "Back End"}) // comparing  strings
+        .select({name:1})
+        .limit(5);
     console.log(result);
     }catch(err){
         console.log(err);
