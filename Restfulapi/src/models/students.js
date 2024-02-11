@@ -4,32 +4,45 @@ const validator = require("validator");
 // creating schema
 const StudentSchema = new mongoose.Schema({
     name: {
-        type: String,  
-        required: [true, "Please provide your name"], 
-        validate: [validator.isLength(3), 'Name should be at least 3 characters']
-    },
-    email:{
-        type:String,
-        unique: true,
-        lowercase : true,
-        required:[true,"Please provide an Email"] ,
-        validate: [validator.isEmail,'Please provide a Valid Email'.toLowerCase()],
-        validate(value){
-            if(!validator.isEmail(value)){
-                throw new Error('You must enter a valid email')
+        type: String,
+        required: true,
+        minlength:3,  // at least three characters long
+        validate(value) {
+            if (!validator.isLength(value,{min:3})) {
+                throw new Error('Name must be more than 3 chars');
             }
         }
     },
+    email: {
+        type: String,
+        unique: [true, "Email id already present"],
+        validate(value){
+            if(!validator.isEmail(value)){
+                throw new Error('Invalid Email Id')
+            }
+        },
+        lowercase: true,
+        required: [true, "Please provide an Email"],
+        validate: [validator.isEmail, 'Please provide a valid Email']
+    },
+    phone:{
+        type: Number,
+        min:10,
+        required: true,
+        unique: true
+    },
+    
     age: {
         type: Number,
         required: [true, "Age is required"],
         validate: {
-            min: [18, "You must be at least 18 years old."],
+            validator: (value) => Number.isInteger(value),
+            message: 'Age must be an integer'
         }
     },
     gender: {
         type: String,
-        enum: ["Male", "Female","Other"],
+        enum: ["Male", "Female", "Other"],
         default: "Not-specified"
     },
     address: {
@@ -38,13 +51,13 @@ const StudentSchema = new mongoose.Schema({
         state: String,
         zipCode: {
             type: String,
-            match: [/^\d{6}$/, 'ZIP code must be a  6 digit number']
+            match: [/^\d{6}$/, 'ZIP code must be a 6 digit number']
         }
     },
 });
 
 // create a model
-// we will create a new collection
-const Student = new mongoose.model( "Student", studentSchema );
+// we will create a new collection with model
+const Student = new mongoose.model("Student", StudentSchema);
 
-module.exports= Student;
+module.exports = Student;
