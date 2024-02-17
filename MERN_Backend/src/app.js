@@ -70,6 +70,26 @@ app.post("/register", async (req, res) => {
     }
 });
 
+// using hashing algorithm to scure the data
+const bcrypt = require("bcryptjs");
+const securePassword = async(password) =>{
+    const passwordHash =  await bcrypt.hash(password, 10);
+    console.log( `The hashed Password is : ${passwordHash}` );
+
+    const passwordMatch =  await bcrypt.compare(password, passwordHash);
+    console.log(`Matched or not : ${passwordMatch}` );
+}
+securePassword("iamgroot&56");
+
+
+
+
+
+
+
+
+
+
 app.listen(port, () => {
     console.log(`Server is running at http://localhost:${port}`);
 });

@@ -5,3 +5,5 @@ mongoose.connect("mongodb://localhost:27017/Registration").then(()=>{
 }).catch((e)=>{
     console.log( `No connection${e}`);
 });
+
+// what is Encryption ?
